@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego del DNI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Juego del DNI</h1>
+
+    <div id="setup">
+      <p>Introduce los nombres de los jugadores (uno por línea):</p>
+      <textarea id="nameList" rows="6" placeholder="Ejemplo: Juan&#10;María&#10;Lucía"></textarea>
+      <button id="startBtn">Comenzar Juego</button>
+    </div>
+
+    <div id="playerScreen" class="hidden">
+      <h2 id="playerName"></h2>
+      <p id="playerPrompt">Haz click en el botón para ver tu identidad.</p>
+      <button id="showIdentityBtn">Ver identidad</button>
+      <button id="nextPlayerBtn" class="hidden">Siguiente jugador</button>
+    </div>
+
+    <div id="situationScreen" class="hidden">
+      <h2>Situación aleatoria</h2>
+      <div id="situation"></div>
+      <button id="nextSituationBtn">Nueva situación</button>
+      <button id="restartBtn">Reiniciar Juego</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
