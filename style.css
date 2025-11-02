@@ -264,17 +264,7 @@ body.dark .step-number {
   line-height: 1.5;
 }
 
-@media (max-width: 500px) {
-  .howto-step {
-    padding: 14px 16px 14px 50px;
-  }
-  .step-number {
-    width: 24px;
-    height: 24px;
-    font-size: 1em;
-  }
-}
-/* --- Versión mejorada para móviles --- */
+/* --- Adaptación real a móviles --- */
 @media (max-width: 600px) {
 
   body {
@@ -284,37 +274,39 @@ body.dark .step-number {
   .container {
     width: 100%;
     max-width: none;
-    padding: 20px 16px;
-    box-shadow: 4px 4px 0 currentColor;
+    padding: 25px 18px;
+    box-shadow: 5px 5px 0 currentColor;
+    border-width: 2px;
   }
 
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
 
   h1 {
     font-size: 1.8em;
-    text-align: left;
+    flex: 1 1 auto;
   }
 
   #themeToggle {
-    align-self: flex-end;
-    font-size: 0.8em;
-    padding: 8px 12px;
-  }
-
-  button {
-    width: 100%;
-    max-width: none;
-    padding: 14px;
-    font-size: 1em;
+    flex-shrink: 0;
+    font-size: 0.85em;
+    padding: 8px 14px;
   }
 
   textarea {
     font-size: 1em;
     padding: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1em;
+    margin-top: 12px;
   }
 
   .howto-step {
@@ -330,6 +322,8 @@ body.dark .step-number {
 
   footer {
     text-align: center;
-    font-size: 0.7em;
+    font-size: 0.75em;
+    margin-top: 25px;
   }
 }
+
