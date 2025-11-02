@@ -1,96 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;500;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: all 0.3s ease;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f6d365, #fda085);
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #111;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 10px;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* Tema oscuro */
+body.dark {
+  background-color: #0e0e0e;
+  color: #f7f7f7;
+}
+
+/* Container */
 .container {
-  background: white;
-  width: 100%;
-  max-width: 500px;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  background: inherit;
+  border: 3px solid currentColor;
+  border-radius: 0;
+  width: 90%;
+  max-width: 600px;
+  padding: 40px 30px;
   text-align: center;
+  position: relative;
+  box-shadow: 10px 10px 0 currentColor;
+  animation: floatIn 0.6s ease;
+}
+
+/* Bordes creativos */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 100px;
+  background: currentColor;
+  top: 20px;
+  left: -10px;
+  transform: rotate(4deg);
+  opacity: 0.1;
+}
+.container::after {
+  right: -10px;
+  left: auto;
+  transform: rotate(-4deg);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid currentColor;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
 }
 
 h1 {
-  margin-bottom: 20px;
-  color: #ff6f61;
-  font-size: 1.8em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Botón modo tema */
+#themeToggle {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  padding: 8px 14px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+#themeToggle:hover {
+  background: currentColor;
+  color: #fff;
+}
+
+/* Secciones */
+.section {
+  margin-top: 20px;
 }
 
 textarea {
   width: 100%;
   padding: 12px;
   font-size: 1em;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 2px solid currentColor;
+  background: transparent;
+  color: inherit;
+  border-radius: 4px;
   resize: vertical;
-  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
+/* Botones generales */
 button {
-  padding: 14px 20px;
-  font-size: 1em;
   cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background-color: #ff6f61;
-  color: white;
-  margin: 10px 5px 0 5px;
-  transition: background-color 0.3s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
 }
 
-button:hover {
-  background-color: #e85a50;
+/* Botón principal */
+.primary {
+  background: currentColor;
+  color: #fff;
+  border: 2px solid currentColor;
+  padding: 14px 22px;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+/* Asegura que siempre se vea (contraste fuerte) */
+body:not(.dark) .primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+body.dark .primary {
+  background: #f7f7f7;
+  color: #000;
+  border-color: #f7f7f7;
+}
+
+.primary:hover {
+  background: transparent;
+  color: currentColor;
+}
+
+/* Botón secundario */
+.secondary {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  padding: 12px 20px;
+  margin-top: 10px;
+}
+
+/* También más visibles */
+body:not(.dark) .secondary {
+  border-color: #111;
+  color: #111;
+}
+body.dark .secondary {
+  border-color: #f7f7f7;
+  color: #f7f7f7;
+}
+
+.secondary:hover {
+  background: currentColor;
+  color: #fff;
+}
+
+/* Marco creativo */
+.marco {
+  border: 2px dashed currentColor;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+body.dark .marco {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Situación */
+#situation {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+/* Animaciones */
+.fade {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.fade:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  font-size: 0.8em;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2em;
+  }
+  .container {
+    padding: 25px 20px;
+    box-shadow: 6px 6px 0 currentColor;
+  }
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
-
-#situation {
+/* --- Estilo del manual "Cómo jugar" --- */
+.howto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   margin-top: 20px;
-  font-weight: bold;
-  font-size: 1.1em;
-  color: #d35400;
-  background: #fff3e0;
-  padding: 15px;
-  border-radius: 10px;
-  word-wrap: break-word;
 }
 
-/* Ajustes para móviles */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5em;
-  }
+.howto-step {
+  position: relative;
+  border: 2px dashed currentColor;
+  padding: 18px 20px 18px 60px;
+  text-align: left;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  font-weight: 500;
+}
 
-  textarea {
-    font-size: 0.95em;
-    padding: 10px;
-  }
+/* Fondo visible también en modo oscuro */
+body.dark .howto-step {
+  background: rgba(255, 255, 255, 0.08);
+}
 
-  button {
-    width: 100%;
+/* Números grandes y contrastados */
+.step-number {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  font-size: 1.2em;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid currentColor;
+}
+
+/* Colores automáticos según tema */
+body:not(.dark) .step-number {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+body.dark .step-number {
+  background: #f7f7f7;
+  color: #000;
+  border-color: #f7f7f7;
+}
+
+/* Texto */
+.howto-step p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 500px) {
+  .howto-step {
+    padding: 14px 16px 14px 50px;
+  }
+  .step-number {
+    width: 24px;
+    height: 24px;
     font-size: 1em;
-    padding: 12px;
-  }
-
-  #situation {
-    font-size: 1em;
-    padding: 12px;
   }
 }
