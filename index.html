@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juego del DNI</title>
-  <link rel="icon" type="image/jpeg" href="DNI.jpg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="DNI.jpg" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
@@ -26,43 +26,27 @@
       </div>
     </div>
 
-   <!-- Pantalla Cómo jugar -->
-<div id="howToPlayScreen" class="hidden section">
-  <h2>Cómo se juega</h2>
-  <div class="howto-container">
-    <div class="howto-step">
-      <span class="step-number">1</span>
-      <p>Cada jugador escribe su nombre en la lista.</p>
+    <!-- Cómo jugar -->
+    <div id="howToPlayScreen" class="hidden section">
+      <h2>Cómo se juega</h2>
+      <div class="howto-container">
+        <div class="howto-step"><span class="step-number">1</span><p>Cada jugador escribe su nombre en la lista.</p></div>
+        <div class="howto-step"><span class="step-number">2</span><p>A cada persona le tocará interpretar a otro jugador al azar.</p></div>
+        <div class="howto-step"><span class="step-number">3</span><p>Se muestra una situación real o embarazosa para todos.</p></div>
+        <div class="howto-step"><span class="step-number">4</span><p>Cada uno debe actuar según la personalidad del jugador que le tocó.</p></div>
+        <div class="howto-step"><span class="step-number">5</span><p>¡Diviértanse viendo cómo se imitan entre todos!</p></div>
+      </div>
+      <button id="backToHome" class="secondary">Volver</button>
     </div>
-    <div class="howto-step">
-      <span class="step-number">2</span>
-      <p>A cada persona le tocará interpretar a otro jugador al azar.</p>
-    </div>
-    <div class="howto-step">
-      <span class="step-number">3</span>
-      <p>Se muestra una situación real o embarazosa para todos.</p>
-    </div>
-    <div class="howto-step">
-      <span class="step-number">4</span>
-      <p>Cada uno debe actuar según la personalidad del jugador que le tocó.</p>
-    </div>
-    <div class="howto-step">
-      <span class="step-number">5</span>
-      <p>¡Diviértanse viendo cómo se imitan entre todos!</p>
-    </div>
-  </div>
-  <button id="backToHome" class="secondary">Volver</button>
-</div>
 
-
-    <!-- Configuración de nombres -->
+    <!-- Configuración -->
     <div id="setup" class="hidden section">
       <p>Introduce los nombres de los jugadores (uno por línea):</p>
       <textarea id="nameList" rows="6" placeholder="Nombre 1&#10;Nombre 2&#10;..."></textarea>
       <button id="startBtn" class="primary">Comenzar juego</button>
     </div>
 
-    <!-- Pantalla de jugador -->
+    <!-- Pantalla jugador -->
     <div id="playerScreen" class="hidden section fade">
       <div class="marco">
         <h2 id="playerName"></h2>
@@ -74,7 +58,7 @@
       </div>
     </div>
 
-    <!-- Situación aleatoria -->
+    <!-- Situación -->
     <div id="situationScreen" class="hidden section fade">
       <div class="marco">
         <h2>Situación aleatoria</h2>
