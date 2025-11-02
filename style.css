@@ -326,4 +326,66 @@ body.dark .step-number {
     margin-top: 25px;
   }
 }
+/* --- Añadir este bloque al final --- */
+@media (max-width: 600px) {
 
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 20px 16px;
+    box-shadow: 4px 4px 0 currentColor;
+    border-width: 2px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    flex: 1 1 auto;
+  }
+
+  #themeToggle {
+    flex-shrink: 0;
+    font-size: 0.85em;
+    padding: 8px 14px;
+  }
+
+  button:not(#themeToggle) {
+    width: 100%;
+    max-width: none;
+    padding: 14px;
+    font-size: 1em;
+    margin-top: 12px;
+  }
+
+  textarea {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .howto-step {
+    padding: 14px 16px 14px 50px;
+    font-size: 0.95em;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.75em;
+    margin-top: 25px;
+  }
+}
