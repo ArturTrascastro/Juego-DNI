@@ -16,7 +16,8 @@ body {
   align-items: center;
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
+  padding: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Tema oscuro */
@@ -27,34 +28,15 @@ body.dark {
 
 /* Container */
 .container {
-  background: inherit;
   border: 3px solid currentColor;
-  border-radius: 0;
+  border-radius: 10px;
   width: 90%;
   max-width: 600px;
   padding: 40px 30px;
   text-align: center;
   position: relative;
   box-shadow: 10px 10px 0 currentColor;
-}
-
-/* Bordes creativos */
-.container::before,
-.container::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 100px;
-  background: currentColor;
-  top: 20px;
-  left: -10px;
-  transform: rotate(4deg);
-  opacity: 0.1;
-}
-.container::after {
-  right: -10px;
-  left: auto;
-  transform: rotate(-4deg);
+  background: inherit;
 }
 
 /* Header */
@@ -70,33 +52,33 @@ header {
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.5em;
-  letter-spacing: 1px;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* Botón modo tema */
 #themeToggle {
-  background: transparent;
+  background: rgba(255,255,255,0.05);
   border: 2px solid currentColor;
   color: inherit;
   padding: 8px 14px;
   font-size: 0.9em;
   text-transform: uppercase;
   cursor: pointer;
-  letter-spacing: 1px;
-}
-
-/* Sin cambios en hover */
-#themeToggle:hover {
-  background: transparent;
-  color: inherit;
+  border-radius: 6px;
 }
 
 /* Secciones */
 .section {
   margin-top: 20px;
+  transition: opacity 0.3s ease;
+}
+.hidden {
+  display: none !important;
+  opacity: 0;
 }
 
+/* Textarea */
 textarea {
   width: 100%;
   padding: 12px;
@@ -109,73 +91,31 @@ textarea {
   margin-top: 10px;
 }
 
-/* Botones generales */
+/* Botones */
 button {
   cursor: pointer;
-  letter-spacing: 1px;
   text-transform: uppercase;
+  letter-spacing: 1px;
   background: none;
   border: 2px solid currentColor;
   color: currentColor;
   padding: 12px 20px;
   margin-top: 10px;
 }
-
-/* Botón principal */
-.primary {
-  background: none;
-  border: 2px solid currentColor;
-  color: currentColor;
+button:not(#themeToggle) {
+  width: 100%;
+  font-size: 1em;
 }
 
-body:not(.dark) .primary {
-  border-color: #111;
-  color: #111;
-}
-body.dark .primary {
-  border-color: #f7f7f7;
-  color: #f7f7f7;
-}
-
-/* Sin efecto hover */
-.primary:hover {
-  background: none;
-  color: currentColor;
-}
-
-/* Botón secundario */
-.secondary {
-  background: none;
-  border: 2px solid currentColor;
-  color: currentColor;
-}
-
-body:not(.dark) .secondary {
-  border-color: #111;
-  color: #111;
-}
-body.dark .secondary {
-  border-color: #f7f7f7;
-  color: #f7f7f7;
-}
-
-/* Sin efecto hover */
-.secondary:hover {
-  background: none;
-  color: currentColor;
-}
-
-/* Marco creativo */
+/* Marco */
 .marco {
   border: 2px dashed currentColor;
   padding: 20px;
   margin-bottom: 20px;
-  position: relative;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.03);
 }
-
 body.dark .marco {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Situación */
@@ -190,33 +130,16 @@ footer {
   margin-top: 30px;
   font-size: 0.8em;
   opacity: 0.6;
-  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-  h1 {
-    font-size: 2em;
-  }
-  .container {
-    padding: 25px 20px;
-    box-shadow: 6px 6px 0 currentColor;
-  }
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* --- Estilo del manual "Cómo jugar" --- */
+/* Cómo jugar */
 .howto-container {
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin-top: 20px;
 }
-
 .howto-step {
   position: relative;
   border: 2px dashed currentColor;
@@ -226,11 +149,9 @@ footer {
   background: rgba(0, 0, 0, 0.04);
   font-weight: 500;
 }
-
 body.dark .howto-step {
   background: rgba(255, 255, 255, 0.08);
 }
-
 .step-number {
   position: absolute;
   left: 18px;
@@ -246,143 +167,29 @@ body.dark .howto-step {
   justify-content: center;
   border: 2px solid currentColor;
 }
-
 body:not(.dark) .step-number {
   background: #111;
   color: #fff;
-  border-color: #111;
 }
-
 body.dark .step-number {
   background: #f7f7f7;
   color: #000;
-  border-color: #f7f7f7;
 }
 
-.howto-step p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* --- Adaptación real a móviles --- */
+/* Responsive */
 @media (max-width: 600px) {
-
-  body {
-    padding: 15px;
-  }
-
   .container {
     width: 100%;
-    max-width: none;
-    padding: 25px 18px;
-    box-shadow: 5px 5px 0 currentColor;
-    border-width: 2px;
-  }
-
-  header {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
-
-  h1 {
-    font-size: 1.8em;
-    flex: 1 1 auto;
-  }
-
-  #themeToggle {
-    flex-shrink: 0;
-    font-size: 0.85em;
-    padding: 8px 14px;
-  }
-
-  textarea {
-    font-size: 1em;
-    padding: 10px;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 1em;
-    margin-top: 12px;
-  }
-
-  .howto-step {
-    padding: 14px 16px 14px 50px;
-    font-size: 0.95em;
-  }
-
-  .step-number {
-    width: 24px;
-    height: 24px;
-    font-size: 1em;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 0.75em;
-    margin-top: 25px;
-  }
-}
-/* --- Añadir este bloque al final --- */
-@media (max-width: 600px) {
-
-  body {
-    padding: 15px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: none;
     padding: 20px 16px;
     box-shadow: 4px 4px 0 currentColor;
-    border-width: 2px;
   }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
-
   h1 {
     font-size: 1.8em;
-    flex: 1 1 auto;
   }
-
-  #themeToggle {
-    flex-shrink: 0;
-    font-size: 0.85em;
-    padding: 8px 14px;
-  }
-
-  button:not(#themeToggle) {
-    width: 100%;
-    max-width: none;
-    padding: 14px;
-    font-size: 1em;
-    margin-top: 12px;
-  }
-
   textarea {
     font-size: 1em;
     padding: 10px;
   }
-
-  .howto-step {
-    padding: 14px 16px 14px 50px;
-    font-size: 0.95em;
-  }
-
-  .step-number {
-    width: 24px;
-    height: 24px;
-    font-size: 1em;
-  }
-
   footer {
     text-align: center;
     font-size: 0.75em;
