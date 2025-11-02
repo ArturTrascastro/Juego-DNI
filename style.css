@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;500;700&display=swap');
 
+/* --- RESET GENERAL --- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: all 0.3s ease;
 }
 
+/* --- BASE --- */
 body {
   font-family: 'Inter', sans-serif;
   background-color: #fff;
@@ -18,29 +19,39 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Tema oscuro */
+/* --- MODO OSCURO --- */
 body.dark {
   background-color: #0e0e0e;
   color: #f7f7f7;
 }
 
-/* Container */
+/* --- CONTENEDOR PRINCIPAL --- */
 .container {
-  background: inherit;
+  background-color: #ffffff; /* Fondo claro independiente */
+  color: #111;
   border: 3px solid currentColor;
-  border-radius: 0;
+  border-radius: 10px;
   width: 90%;
   max-width: 600px;
   padding: 40px 30px;
   text-align: center;
   position: relative;
   box-shadow: 10px 10px 0 currentColor;
-  animation: floatIn 0.6s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Bordes creativos */
+/* En modo oscuro */
+body.dark .container {
+  background-color: #1a1a1a;
+  color: #f7f7f7;
+  box-shadow: 10px 10px 0 #f7f7f7;
+}
+
+/* --- DECORACIÓN LATERAL --- */
 .container::before,
 .container::after {
   content: "";
@@ -49,17 +60,18 @@ body.dark {
   height: 100px;
   background: currentColor;
   top: 20px;
+  opacity: 0.1;
+}
+.container::before {
   left: -10px;
   transform: rotate(4deg);
-  opacity: 0.1;
 }
 .container::after {
   right: -10px;
-  left: auto;
   transform: rotate(-4deg);
 }
 
-/* Header */
+/* --- HEADER --- */
 header {
   display: flex;
   justify-content: space-between;
@@ -76,7 +88,7 @@ h1 {
   text-transform: uppercase;
 }
 
-/* Botón modo tema */
+/* --- BOTÓN MODO OSCURO/CLARO --- */
 #themeToggle {
   background: transparent;
   border: 2px solid currentColor;
@@ -86,18 +98,30 @@ h1 {
   text-transform: uppercase;
   cursor: pointer;
   letter-spacing: 1px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
 #themeToggle:hover {
-  background: currentColor;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.05);
 }
 
-/* Secciones */
+body.dark #themeToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- SECCIONES --- */
 .section {
   margin-top: 20px;
+  transition: opacity 0.3s ease;
 }
 
+.hidden {
+  display: none !important;
+  opacity: 0;
+}
+
+/* --- TEXTAREA --- */
 textarea {
   width: 100%;
   padding: 12px;
@@ -105,126 +129,241 @@ textarea {
   border: 2px solid currentColor;
   background: transparent;
   color: inherit;
-  border-radius: 4px;
+  border-radius: 6px;
   resize: vertical;
   margin-top: 10px;
 }
 
-/* Botones generales */
+/* --- BOTONES --- */
 button {
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.25s ease;
+  border: 2px solid currentColor;
+  color: currentColor;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  background: none;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Botón principal */
-.primary {
-  background: currentColor;
-  color: #fff;
-  border: 2px solid currentColor;
-  padding: 14px 22px;
-  border-radius: 0;
-  margin-top: 10px;
-}
-
-/* Asegura que siempre se vea (contraste fuerte) */
-body:not(.dark) .primary {
-  background: #111;
-  color: #fff;
-  border-color: #111;
-}
-body.dark .primary {
-  background: #f7f7f7;
-  color: #000;
-  border-color: #f7f7f7;
-}
-
-.primary:hover {
-  background: transparent;
-  color: currentColor;
-}
-
-/* Botón secundario */
-.secondary {
-  background: transparent;
-  border: 2px solid currentColor;
-  color: inherit;
-  padding: 12px 20px;
-  margin-top: 10px;
-}
-
-/* También más visibles */
-body:not(.dark) .secondary {
-  border-color: #111;
-  color: #111;
-}
-body.dark .secondary {
-  border-color: #f7f7f7;
-  color: #f7f7f7;
-}
-
+.primary:hover,
 .secondary:hover {
-  background: currentColor;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.05);
 }
 
-/* Marco creativo */
+body.dark .primary:hover,
+body.dark .secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- MARCO DECORATIVO --- */
 .marco {
   border: 2px dashed currentColor;
   padding: 20px;
   margin-bottom: 20px;
   position: relative;
   background: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
 }
 
 body.dark .marco {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Situación */
+/* --- SITUACIÓN --- */
 #situation {
   margin-top: 15px;
   font-weight: 500;
   font-size: 1.1em;
 }
 
-/* Animaciones */
-.fade {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.4s, transform 0.4s;
-}
-.fade:not(.hidden) {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes floatIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Footer */
+/* --- FOOTER --- */
 footer {
   margin-top: 30px;
   font-size: 0.8em;
   opacity: 0.6;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-align: center;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-  h1 {
-    font-size: 2em;
+/* --- SECCIÓN “CÓMO JUGAR” --- */
+.howto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.howto-step {
+  position: relative;
+  border: 2px dashed currentColor;
+  padding: 18px 20px 18px 60px;
+  text-align: left;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  font-weight: 500;
+}
+
+body.dark .howto-step {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.step-number {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  font-size: 1.2em;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid currentColor;
+}
+
+body:not(.dark) .step-number {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+body.dark .step-number {
+  background: #f7f7f7;
+  color: #000;
+  border-color: #f7f7f7;
+}
+
+/* --- RESPONSIVE (MÓVILES) --- */
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
   }
+
   .container {
-    padding: 25px 20px;
-    box-shadow: 6px 6px 0 currentColor;
+    width: 100%;
+    max-width: none;
+    padding: 25px 18px;
+    box-shadow: 5px 5px 0 currentColor;
+    border-width: 2px;
+  }
+
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    flex: 1 1 auto;
+  }
+
+  #themeToggle {
+    flex-shrink: 0;
+    font-size: 0.85em;
+    padding: 8px 14px;
+  }
+
+  button:not(#themeToggle) {
+    width: 100%;
+    max-width: none;
+    padding: 14px;
+    font-size: 1em;
+    margin-top: 12px;
+  }
+
+  textarea {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .howto-step {
+    padding: 14px 16px 14px 50px;
+    font-size: 0.95em;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.75em;
+    margin-top: 25px;
   }
 }
 
-.hidden {
-  display: none !important;
+/* Ajuste adicional para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.5em;
+  }
 }
+@media (max-width: 500px) {
+  /* Contenedor compacto y atractivo */
+  .container {
+    padding: 25px 15px;
+    box-shadow: 4px 4px 0;
+    width: 95%;
+  }
+
+  /* Título más grande y centrado */
+  h1 {
+    font-size: 2.4em;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  /* Frases más cortas y legibles */
+  .marco p,
+  .howto-step p {
+    font-size: 0.95em;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+
+  /* Botones grandes y uniformes */
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 1em;
+    border-radius: 6px;
+  }
+
+  /* Ajuste de pasos del manual */
+  .howto-step {
+    padding-left: 50px;
+    font-size: 0.95em;
+  }
+
+  .step-number {
+    width: 26px;
+    height: 26px;
+    font-size: 1em;
+  }
+
+  /* Márgenes generales */
+  .section { margin-top: 20px; }
+  .actions { display: flex; flex-direction: column; gap: 10px; }
+
+  /* Situación */
+  #situation { font-size: 1em; line-height: 1.3; }
+
+  /* Footer más compacto */
+  footer { font-size: 0.75em; margin-top: 15px; }
+
+  /* Elimina cualquier transición */
+  * { transition: none !important; }
+}
+
