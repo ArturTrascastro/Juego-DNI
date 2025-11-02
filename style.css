@@ -389,26 +389,3 @@ body.dark .step-number {
     margin-top: 25px;
   }
 }
-/* --- Bloque para arreglar modo oscuro/claro en móviles --- */
-body:not(.dark) .container {
-  border-color: #111;
-  box-shadow: 10px 10px 0 #111;
-}
-body.dark .container {
-  border-color: #f7f7f7;
-  box-shadow: 10px 10px 0 #f7f7f7;
-}
-
-body:not(.dark) .marco {
-  background: rgba(0,0,0,0.02);
-}
-body.dark .marco {
-  background: rgba(255,255,255,0.05);
-}
-
-body:not(.dark) .howto-step {
-  background: rgba(0,0,0,0.04);
-}
-body.dark .howto-step {
-  background: rgba(255,255,255,0.08);
-}
