@@ -4,7 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: all 0.3s ease;
 }
 
 body {
@@ -37,7 +36,6 @@ body.dark {
   text-align: center;
   position: relative;
   box-shadow: 10px 10px 0 currentColor;
-  animation: floatIn 0.6s ease;
 }
 
 /* Bordes creativos */
@@ -88,9 +86,10 @@ h1 {
   letter-spacing: 1px;
 }
 
+/* Sin cambios en hover */
 #themeToggle:hover {
-  background: currentColor;
-  color: #fff;
+  background: transparent;
+  color: inherit;
 }
 
 /* Secciones */
@@ -115,46 +114,42 @@ button {
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.25s ease;
+  background: none;
+  border: 2px solid currentColor;
+  color: currentColor;
+  padding: 12px 20px;
+  margin-top: 10px;
 }
 
 /* Botón principal */
 .primary {
-  background: currentColor;
-  color: #fff;
+  background: none;
   border: 2px solid currentColor;
-  padding: 14px 22px;
-  border-radius: 0;
-  margin-top: 10px;
+  color: currentColor;
 }
 
-/* Asegura que siempre se vea (contraste fuerte) */
 body:not(.dark) .primary {
-  background: #111;
-  color: #fff;
   border-color: #111;
+  color: #111;
 }
 body.dark .primary {
-  background: #f7f7f7;
-  color: #000;
   border-color: #f7f7f7;
+  color: #f7f7f7;
 }
 
+/* Sin efecto hover */
 .primary:hover {
-  background: transparent;
+  background: none;
   color: currentColor;
 }
 
 /* Botón secundario */
 .secondary {
-  background: transparent;
+  background: none;
   border: 2px solid currentColor;
-  color: inherit;
-  padding: 12px 20px;
-  margin-top: 10px;
+  color: currentColor;
 }
 
-/* También más visibles */
 body:not(.dark) .secondary {
   border-color: #111;
   color: #111;
@@ -164,9 +159,10 @@ body.dark .secondary {
   color: #f7f7f7;
 }
 
+/* Sin efecto hover */
 .secondary:hover {
-  background: currentColor;
-  color: #fff;
+  background: none;
+  color: currentColor;
 }
 
 /* Marco creativo */
@@ -187,22 +183,6 @@ body.dark .marco {
   margin-top: 15px;
   font-weight: 500;
   font-size: 1.1em;
-}
-
-/* Animaciones */
-.fade {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.4s, transform 0.4s;
-}
-.fade:not(.hidden) {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes floatIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
@@ -228,6 +208,7 @@ footer {
 .hidden {
   display: none !important;
 }
+
 /* --- Estilo del manual "Cómo jugar" --- */
 .howto-container {
   display: flex;
@@ -246,12 +227,10 @@ footer {
   font-weight: 500;
 }
 
-/* Fondo visible también en modo oscuro */
 body.dark .howto-step {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Números grandes y contrastados */
 .step-number {
   position: absolute;
   left: 18px;
@@ -268,7 +247,6 @@ body.dark .howto-step {
   border: 2px solid currentColor;
 }
 
-/* Colores automáticos según tema */
 body:not(.dark) .step-number {
   background: #111;
   color: #fff;
@@ -281,13 +259,11 @@ body.dark .step-number {
   border-color: #f7f7f7;
 }
 
-/* Texto */
 .howto-step p {
   margin: 0;
   line-height: 1.5;
 }
 
-/* Responsivo para móviles */
 @media (max-width: 500px) {
   .howto-step {
     padding: 14px 16px 14px 50px;
@@ -296,5 +272,64 @@ body.dark .step-number {
     width: 24px;
     height: 24px;
     font-size: 1em;
+  }
+}
+/* --- Versión mejorada para móviles --- */
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 20px 16px;
+    box-shadow: 4px 4px 0 currentColor;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    text-align: left;
+  }
+
+  #themeToggle {
+    align-self: flex-end;
+    font-size: 0.8em;
+    padding: 8px 12px;
+  }
+
+  button {
+    width: 100%;
+    max-width: none;
+    padding: 14px;
+    font-size: 1em;
+  }
+
+  textarea {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .howto-step {
+    padding: 14px 16px 14px 50px;
+    font-size: 0.95em;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.7em;
   }
 }
