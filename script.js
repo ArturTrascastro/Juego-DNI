@@ -1,33 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Botones principales
+  // --- Botones principales ---
   const themeToggle = document.getElementById("themeToggle");
   const goToSetup = document.getElementById("goToSetup");
   const goToHowToPlay = document.getElementById("goToHowToPlay");
   const backToHome = document.getElementById("backToHome");
-
   const startBtn = document.getElementById("startBtn");
   const showIdentityBtn = document.getElementById("showIdentityBtn");
   const nextPlayerBtn = document.getElementById("nextPlayerBtn");
   const nextSituationBtn = document.getElementById("nextSituationBtn");
   const restartBtn = document.getElementById("restartBtn");
 
-  // Pantallas
+  // --- Pantallas ---
   const homeScreen = document.getElementById("homeScreen");
   const howToPlayScreen = document.getElementById("howToPlayScreen");
   const setupDiv = document.getElementById("setup");
   const playerScreen = document.getElementById("playerScreen");
   const situationScreen = document.getElementById("situationScreen");
-
   const playerNameEl = document.getElementById("playerName");
   const playerPrompt = document.getElementById("playerPrompt");
   const situationDiv = document.getElementById("situation");
 
-  // Datos
+  // --- Datos ---
   let players = [];
   let asignaciones = [];
   let currentPlayer = 0;
 
-  // Situaciones
   const situaciones = [
     "Estás en una fiesta y ves a tu ex hablando con tu mejor amigo. ¿Qué haces?",
     "Tu grupo planea una salida, pero se olvidan de invitarte. ¿Cómo reaccionas?",
@@ -41,25 +38,37 @@ document.addEventListener("DOMContentLoaded", () => {
     "Tu grupo organiza un plan sin ti. ¿Cómo te lo tomas?"
   ];
 
-  // Tema oscuro
-  const savedTheme = localStorage.getItem("theme") || "light";
-  document.body.classList.toggle("dark", savedTheme === "dark");
-  actualizarBotonTema();
-
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    const mode = document.body.classList.contains("dark") ? "dark" : "light";
+  // --- Tema (modo oscuro/luz) ---
+  function setTheme(mode) {
+    if (mode === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
     localStorage.setItem("theme", mode);
-    actualizarBotonTema();
-  });
+    updateThemeButton();
+  }
 
-  function actualizarBotonTema() {
+  function detectSystemPreference() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function updateThemeButton() {
     themeToggle.textContent = document.body.classList.contains("dark")
       ? "Modo claro"
       : "Modo oscuro";
   }
 
-  // Navegación entre pantallas
+  // Inicialización del tema
+  const saved = localStorage.getItem("theme");
+  setTheme(saved || detectSystemPreference());
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = document.body.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  });
+
+  // --- Navegación ---
   goToSetup.addEventListener("click", () => mostrarPantalla(setupDiv));
   goToHowToPlay.addEventListener("click", () => mostrarPantalla(howToPlayScreen));
   backToHome.addEventListener("click", () => mostrarPantalla(homeScreen));
@@ -95,12 +104,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   nextSituationBtn.addEventListener("click", mostrarSituacion);
-  restartBtn.addEventListener("click", () => location.reload());
 
-  // Funciones de pantalla
+  restartBtn.addEventListener("click", () => {
+    players = [];
+    asignaciones = [];
+    currentPlayer = 0;
+    document.getElementById("nameList").value = "";
+    mostrarPantalla(homeScreen);
+  });
+
+  // --- Funciones ---
   function mostrarPantalla(nuevaPantalla) {
     document.querySelectorAll(".section").forEach(sec => sec.classList.add("hidden"));
     nuevaPantalla.classList.remove("hidden");
+    nuevaPantalla.scrollIntoView({ behavior: "smooth" });
   }
 
   function mostrarJugador() {
@@ -109,9 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function generarAsignaciones(names) {
-    let shuffled;
+    let shuffled = [...names];
+    let attempts = 0;
     do {
-      shuffled = [...names].sort(() => Math.random() - 0.5);
+      shuffled.sort(() => Math.random() - 0.5);
+      attempts++;
+      if (attempts > 1000) break;
     } while (shuffled.some((n, i) => n === names[i]));
     return shuffled;
   }
